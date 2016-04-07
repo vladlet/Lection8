@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.util.LruCache;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
@@ -50,7 +51,7 @@ public class ListFragment extends Fragment {
             w = h;
             h = tmp;
         }
-        return (int)(Math.min(h * 0.7f, w * 0.7f) + 0.5f);
+        return (int)(Math.min(h * 0.9f, w * 0.9f) + 0.5f);
     }
 
     @Override
@@ -215,7 +216,7 @@ public class ListFragment extends Fragment {
         private final WeakReference<LoadImageTask> _loadTaskWeak;
 
         private DownloadDrawable(LoadImageTask loadTask) {
-            super(Color.WHITE);
+            super(Color.YELLOW);
             _loadTaskWeak = new WeakReference<>(loadTask);
         }
 
@@ -286,12 +287,6 @@ public class ListFragment extends Fragment {
             holder._iv = (ImageView)convertView.findViewById(R.id.dict_image);
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(_imageSize, _imageSize);
             holder._iv.setLayoutParams(lp);
-
-
-            //convertView.setTag(holder);
-            //ViewCompat.setElevation(convertView, 3);
-            //ViewCompat.setTranslationZ(convertView, 3);
-
 
             return holder;
         }
