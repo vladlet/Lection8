@@ -41,7 +41,7 @@ import java.util.List;
 public class ListFragment extends Fragment {
 
     private static int _imageSize;
-    private LruCache<String, Bitmap> _memoryCache;
+    private static LruCache<String, Bitmap> _memoryCache;
 
     private static int updateImageSize(DisplayMetrics dm) {
         int h = dm.heightPixels;
@@ -150,7 +150,9 @@ public class ListFragment extends Fragment {
                 opt.inSampleSize = sc;
                 opt.inJustDecodeBounds = false;
                 Bitmap bitmap = BitmapFactory.decodeStream(new FileInputStream(file), null, opt);
-                Log.d("LOAD_IMAGE", " name = " + _name + " w = " + bitmap.getWidth() + " h = " + bitmap.getHeight());
+                if (bitmap != null) {
+                    Log.d("LOAD_IMAGE", " name = " + _name + " w = " + bitmap.getWidth() + " h = " + bitmap.getHeight());
+                }
                 return bitmap;
             } catch (IOException e) {
                 //Log.e("LoadImageTask", "LoadImageTask.LoadBitmap IOException " + e.getMessage(), e);
@@ -236,10 +238,10 @@ public class ListFragment extends Fragment {
             DownloadDrawable dd = new DownloadDrawable(lt);
             iv.setImageDrawable(dd);
 
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
-                lt.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-            else
-                lt.execute();
+            //if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+            //    lt.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+            //else
+            lt.execute();
         }
     }
 
