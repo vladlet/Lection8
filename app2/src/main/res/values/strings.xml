@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">BitmapAllocation</string>
+    <string name="title_activity_bitmap_allocation">BitmapAllocation</string>
+    <string name="reuse_bitmap">Reuse Bitmap</string>
+</resources>
